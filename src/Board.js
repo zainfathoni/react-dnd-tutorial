@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Square from "./Square";
 import Knight from "./Knight";
-import { moveKnight } from "./Game";
+import { canMoveKnight, moveKnight } from "./Game";
 
 export default class Board extends Component {
   handleSquareClick(toX, toY) {
-    moveKnight(toX, toY);
+    if (canMoveKnight(toX, toY)) {
+      moveKnight(toX, toY);
+    }
   }
 
   renderSquare(i) {
