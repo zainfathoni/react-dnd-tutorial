@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { findDOMNode } from "react-dom";
 import PropTypes from "prop-types";
-import { ItemTypes } from "./Constants";
+import styled from "styled-components";
 import { DragSource } from "react-dnd";
+import { ItemTypes } from "./Constants";
 
 const knightSource = {
   beginDrag(props) {
@@ -17,6 +19,13 @@ function collect(connect, monitor) {
   };
 }
 
+const StyledKnight = styled.div`
+  opacity: ${props => (props.isDragging ? 0.5 : 1)};
+  font-size: 25;
+  font-weight: bold;
+  cursor: move;
+`;
+
 class Knight extends Component {
   componentDidMount() {
     const img = new Image();
@@ -27,17 +36,10 @@ class Knight extends Component {
 
   render() {
     const { connectDragSource, isDragging } = this.props;
-    return connectDragSource(
-      <div
-        style={{
-          opacity: isDragging ? 0.5 : 1,
-          fontSize: 25,
-          fontWeight: "bold",
-          cursor: "move"
-        }}
-      >
+    return (
+      <StyledKnight innerRef={knight => connectDragSource(findDOMNode(knight))}>
         ♘
-      </div>
+      </StyledKnight>
     );
   }
 }
