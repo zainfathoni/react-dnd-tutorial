@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { findDOMNode } from "react-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { DragSource } from "react-dnd";
@@ -37,7 +36,7 @@ class Knight extends Component {
   render() {
     const { connectDragSource, isDragging } = this.props;
     return (
-      <StyledKnight innerRef={knight => connectDragSource(findDOMNode(knight))}>
+      <StyledKnight innerRef={knight => connectDragSource(knight)}>
         ♘
       </StyledKnight>
     );
