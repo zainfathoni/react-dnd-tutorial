@@ -20,7 +20,8 @@ function collect(connect, monitor) {
 
 const StyledKnight = styled.div`
   opacity: ${props => (props.isDragging ? 0.5 : 1)};
-  font-size: 25;
+  text-align: center;
+  font-size: 60px;
   font-weight: bold;
   cursor: move;
 `;
